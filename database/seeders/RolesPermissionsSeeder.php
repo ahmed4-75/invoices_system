@@ -14,7 +14,7 @@ class RolesPermissionsSeeder extends Seeder
      */
     public function run(): void
     {
-        $permissions = ['all','invoices_receipts','goods','view'];
+        $permissions = ['All','Invoices,Receipts,Expenses','Goods','View'];
         foreach ($permissions as $perm) {
             Permission::firstOrCreate([
                 'name' => $perm,

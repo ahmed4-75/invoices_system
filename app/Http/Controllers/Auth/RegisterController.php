@@ -65,14 +65,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $exist = User::exists();
         $newUser = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
 
-        $data = User::exists();
-        if($data){
+        if($exist){
             $newUser->assignRole('user');
         }else{
             $newUser->assignRole('admin');

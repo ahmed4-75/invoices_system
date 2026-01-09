@@ -57,6 +57,13 @@ Route::middleware(['auth','role:Admin'])->group(function () {
         return view('users_permissions.users',compact('users')); 
     })->name('users.index');
     Route::delete('user/users/{user}',function(User $user){
+        // $user = User::findOrFail($id);
+        $isFirstUser = User::orderBy('created_at')->orderBy('id')->value('id') === $user->id;
+        if($isFirstUser){
+            return to_route('users.index')->withErrors([
+                'error' => "You Can't DELETE the FIRST USER in the system"
+            ]);
+        }
         $user->forceDelete();
         session()->flash('delete', 'User has been Deleted Successfully ✅');
         return to_route('users.index'); 
@@ -85,6 +92,3 @@ Route::middleware(['auth','role:Admin'])->group(function () {
         Route::delete('user/expenses_archive/{id}/destroy','destroy')->name('expenses_archive.destroy');
     });
 });
-// Route::get('/test-role', function () {
-//     return 'OK';
-// })->middleware(['auth','role:Admin']);

@@ -40,6 +40,16 @@
 			</div>
 		</div>
 	@endif
+	@if ($errors->any())
+		<div class="alert alert-danger">
+			<ul>
+				@foreach ($errors->all() as $error)
+					<li>{{ $error }}</li>
+				@endforeach
+			</ul>
+		</div>
+	@endif
+
 	<!--div-->
 	<div class="col-xl-12">
 		<div class="card mg-b-20">
@@ -49,7 +59,7 @@
 						<thead>
                             <tr>
                                 <th>#</th>
-                                <th>Name</th>
+                                <th>User Name</th>
                                 <th>Email</th>
                                 <th>Created at</th>
                                 <th>Updated at</th>

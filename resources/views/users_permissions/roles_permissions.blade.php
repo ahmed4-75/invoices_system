@@ -40,7 +40,6 @@
 			</div>
 		</div>
 	@endif
-
 	@if ($errors->any())
 		<div class="alert alert-danger">
 			<ul>
@@ -50,6 +49,7 @@
 			</ul>
 		</div>
 	@endif
+	
 	<!--div-->
 	<div class="col-xl-12">
 		<div class="card mg-b-20">
